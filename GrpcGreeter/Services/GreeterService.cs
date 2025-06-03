@@ -15,7 +15,15 @@ public class GreeterService : Greeter.GreeterBase
     {
         return Task.FromResult(new HelloReply
         {
-            Message = "I am grpc server. Text I received from client was: " + request.Name
+            Message = "I am grpc server. Name I received from client was: " + request.GetValue()
+        });
+    }
+
+    public override Task<HelloReply> SayNumber(NumberRequest request, ServerCallContext context)
+    {
+        return Task.FromResult(new HelloReply
+        {
+            Message = "I am grpc server. Number I received from client was: " + request.GetValue()
         });
     }
 }
